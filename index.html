@@ -298,7 +298,7 @@
                 </button>
 
                 <p class="text-center text-gray-600 text-sm mt-4">
-                    * You will be redirected to your UPI app for secure payment
+                    * You will be redirected to PhonePe, Google Pay, Paytm or any UPI app for secure payment
                 </p>
             </div>
         </div>
@@ -555,7 +555,7 @@
             const upiId = selectedDonationType === 'govt' ? 'pmnrf@centralbank' : 'dozerafoundation@axl';
             const recipientName = selectedDonationType === 'govt' ? 'PM National Relief Fund' : 'Dozera Foundation';
             
-            // Create UPI payment URL
+            // Create UPI payment URL (works with PhonePe, Google Pay, Paytm, etc.)
             const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(recipientName)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(`Punjab Flood Relief - ${donorName}${donorMessage ? ' - ' + donorMessage : ''}`)}`;
             
             // Show confirmation
@@ -567,17 +567,24 @@
                 Recipient: ${recipientName}
                 ${donorMessage ? `Message: ${donorMessage}` : ''}
                 
-                Do you want to proceed to UPI app?
+                You will be redirected to your UPI app (PhonePe, Google Pay, Paytm, etc.)
             `;
             
             if (confirm(confirmMessage)) {
-                // Try to open UPI app
-                window.location.href = upiUrl;
+                // Try to open any available UPI app
+                const link = document.createElement('a');
+                link.href = upiUrl;
+                link.click();
                 
-                // Show success message
+                // Fallback message if UPI apps are not available
                 setTimeout(() => {
-                    alert('Thank you! Your donation will help Punjab flood victims. 🙏');
-                }, 1000);
+                    alert('If no UPI app opened, please install PhonePe, Google Pay, or Paytm to complete donation. 📱');
+                }, 2000);
+                
+                // Success message
+                setTimeout(() => {
+                    alert('Thank you for helping Punjab flood victims! 🙏');
+                }, 3000);
             }
         }
 
@@ -595,5 +602,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9783f528557bde58',t:'MTc1NjcyMTIxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9783f99ec36b17d7',t:'MTc1NjcyMTM5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
