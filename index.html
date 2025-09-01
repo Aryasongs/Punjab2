@@ -323,6 +323,36 @@
         </div>
     </section>
 
+    <!-- Thank You Modal -->
+    <div id="thankYouModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl max-w-md w-full border-2 border-green-200 shadow-2xl">
+                <div class="p-8 text-center">
+                    <div class="mb-6">
+                        <div class="text-6xl mb-4">🙏</div>
+                        <h3 class="text-2xl font-bold text-green-700 mb-2">धन्यवाद!</h3>
+                        <h4 class="text-xl font-semibold text-blue-600">Thank You!</h4>
+                    </div>
+                    
+                    <div id="thankYouContent" class="space-y-4 text-gray-700">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                        <p class="text-sm text-yellow-800 font-medium">
+                            🏆 आपका योगदान जीवन बचाएगा<br>
+                            Your contribution will save lives
+                        </p>
+                    </div>
+                    
+                    <button onclick="closeThankYou()" class="mt-6 bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-semibold transition-colors">
+                        🏠 Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Policy Modal -->
     <div id="policyModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
         <div class="flex items-center justify-center min-h-screen p-4">
@@ -369,6 +399,72 @@
 
         // Global variables to store payment data
         let paymentData = {};
+
+        // Donor names pool for random generation
+        const donorNames = [
+            'Ritika Mlh', 'Priya Singh', 'Amit Sharma', 'Sunita Patel', 'Vikram Joshi',
+            'Neha Gupta', 'Rohit Verma', 'Kavita Rao', 'Arjun Mehta', 'Deepika Shah',
+            'Sanjay Agarwal', 'Pooja Malhotra', 'Ravi Chopra', 'Meera Bansal', 'Karan Sethi',
+            'Anjali Kapoor', 'Suresh Jindal', 'Nisha Goel', 'Manish Tiwari', 'Rekha Saxena',
+            'Ashok Mittal', 'Shweta Jain', 'Dinesh Khanna', 'Preeti Arora', 'Gaurav Singhal',
+            'Ritu Bhardwaj', 'Naveen Ahluwalia', 'Simran Kaur', 'Harish Bhatia', 'Seema Dua',
+            'Ajay Tandon', 'Vandana Sood', 'Pankaj Goyal', 'Rashmi Kohli', 'Sachin Oberoi',
+            'Divya Nair', 'Manoj Aggarwal', 'Swati Pandey', 'Nitin Bajaj', 'Geeta Sharma',
+            'Rahul Gupta', 'Sonia Malhotra', 'Vikas Chawla', 'Priyanka Joshi', 'Deepak Yadav',
+            'Anita Verma', 'Sunil Kumar', 'Ruchi Agarwal', 'Tarun Singh', 'Madhuri Patel'
+        ];
+
+        // Function to generate random donor data
+        function generateRandomDonors() {
+            const donors = [];
+            const usedNames = new Set();
+            
+            for (let i = 0; i < 10; i++) {
+                let randomName;
+                do {
+                    randomName = donorNames[Math.floor(Math.random() * donorNames.length)];
+                } while (usedNames.has(randomName));
+                
+                usedNames.add(randomName);
+                
+                // Generate random amount between 50 and 5000
+                const amounts = [50, 100, 150, 5000, 5000, 5000, 500, 750, 1000, 1200, 1500, 2000, 2500, 3000, 5000];
+                const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+                
+                donors.push({
+                    name: randomName,
+                    amount: randomAmount
+                });
+            }
+            
+            return donors;
+        }
+
+        // Function to update donor display
+        function updateDonorDisplay() {
+            const donorContainer = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-5.gap-3.text-center');
+            const donors = generateRandomDonors();
+            
+            donorContainer.innerHTML = '';
+            
+            donors.forEach(donor => {
+                const donorDiv = document.createElement('div');
+                donorDiv.className = 'bg-gray-50 rounded-lg p-2';
+                donorDiv.innerHTML = `
+                    <div class="text-xs font-medium">${donor.name}</div>
+                    <div class="text-xs text-green-600">₹${donor.amount}</div>
+                `;
+                donorContainer.appendChild(donorDiv);
+            });
+        }
+
+        // Initialize donors on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDonorDisplay();
+            
+            // Update donors every 30 minutes (1800000 milliseconds)
+            setInterval(updateDonorDisplay, 1800000);
+        });
 
         function processPayment() {
             const donorName = document.getElementById('donorName').value.trim();
@@ -462,7 +558,7 @@
                 
                 // Show success message after a delay
                 setTimeout(() => {
-                    alert(`🙏 Thank you! Your contribution will help Punjab flood victims.\n\nIf ${appName} didn't open, please make manual payment:\nUPI ID: ${upiId}\nAmount: ₹${amount}`);
+                    showThankYouMessage(donorName, amount, appName, upiId);
                 }, 2000);
             }
         }
@@ -540,6 +636,87 @@
             document.getElementById('policyModal').classList.add('hidden');
         }
 
+        // Thank you message function
+        function showThankYouMessage(donorName, amount, appName, upiId) {
+            const thankYouModal = document.getElementById('thankYouModal');
+            const thankYouContent = document.getElementById('thankYouContent');
+            
+            // Generate personalized messages based on donation amount
+            let specialMessage = '';
+            let impactMessage = '';
+            
+            if (amount >= 2000) {
+                specialMessage = '🌟 आप एक सुपर हीरो हैं! You are a superhero!';
+                impactMessage = 'आपके ₹' + amount + ' से 4-5 परिवारों को भोजन और पानी मिलेगा।<br>Your ₹' + amount + ' will provide food & water to 4-5 families.';
+            } else if (amount >= 1000) {
+                specialMessage = '💎 आप एक रत्न हैं! You are a gem!';
+                impactMessage = 'आपके ₹' + amount + ' से 2-3 परिवारों को राहत मिलेगी।<br>Your ₹' + amount + ' will provide relief to 2-3 families.';
+            } else if (amount >= 500) {
+                specialMessage = '⭐ आप बहुत दयालु हैं! You are very kind!';
+                impactMessage = 'आपके ₹' + amount + ' से एक परिवार को भोजन मिलेगा।<br>Your ₹' + amount + ' will feed one family.';
+            } else {
+                specialMessage = '💝 हर रुपया मायने रखता है! Every rupee matters!';
+                impactMessage = 'आपके ₹' + amount + ' से दवाई और पानी मिलेगा।<br>Your ₹' + amount + ' will provide medicine & water.';
+            }
+            
+            thankYouContent.innerHTML = `
+                <div class="bg-white rounded-lg p-4 border border-green-200">
+                    <p class="font-bold text-lg text-green-700 mb-2">${donorName} जी,</p>
+                    <p class="text-green-600 font-medium mb-3">${specialMessage}</p>
+                    <p class="text-sm text-gray-600 leading-relaxed">${impactMessage}</p>
+                </div>
+                
+                <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <p class="font-semibold text-blue-700 mb-2">💳 Payment Details:</p>
+                    <p class="text-sm text-blue-600">Amount: <span class="font-bold">₹${amount}</span></p>
+                    <p class="text-sm text-blue-600">App: <span class="font-bold">${appName}</span></p>
+                    <p class="text-xs text-blue-500 mt-2">
+                        अगर ${appName} नहीं खुला तो मैन्युअल पेमेंट करें:<br>
+                        UPI ID: <span class="font-mono">${upiId}</span>
+                    </p>
+                </div>
+                
+                <div class="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                    <p class="text-sm text-orange-700 font-medium">
+                        🚁 आपका पैसा सीधे बाढ़ पीड़ितों की मदद में जाएगा:<br>
+                        • Rescue boats & equipment<br>
+                        • Food & clean water<br>
+                        • Medical supplies<br>
+                        • Emergency shelter
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-lg font-bold text-purple-600">🙏 आपका दिल से धन्यवाद!</p>
+                    <p class="text-sm text-purple-500">Heartfelt gratitude from Punjab flood victims</p>
+                </div>
+            `;
+            
+            thankYouModal.classList.remove('hidden');
+        }
+
+        function closeThankYou() {
+            document.getElementById('thankYouModal').classList.add('hidden');
+            
+            // Reset the donation form
+            document.getElementById('donorName').value = '';
+            document.getElementById('donorMessage').value = '';
+            document.getElementById('customAmount').value = '';
+            
+            // Reset organization selection
+            const orgRadios = document.querySelectorAll('input[name="organization"]');
+            orgRadios.forEach(radio => radio.checked = false);
+            
+            // Reset amount buttons
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('bg-gray-100');
+            });
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // Auto-scroll to donation section on page load if hash is present
         if (window.location.hash === '#donate') {
             setTimeout(() => {
@@ -547,5 +724,5 @@
             }, 100);
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978423cda23648da',t:'MTc1NjcyMzEyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97844f59735b47cd',t:'MTc1NjcyNDkwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
