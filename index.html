@@ -221,7 +221,7 @@
                 </button>
 
                 <div class="text-xs text-gray-500 text-center mt-4">
-                    Secure payment via UPI (excludes WhatsApp Pay)
+                    Secure payment via UPI - Works with PhonePe, Google Pay, Paytm, BHIM, Amazon Pay & all other UPI apps (except WhatsApp Pay)
                 </div>
             </div>
         </div>
@@ -326,7 +326,7 @@
             const payeeName = encodeURIComponent(orgName);
             const note = encodeURIComponent(`Punjab Flood Relief - ${donorName}${donorMessage ? ': ' + donorMessage : ''}`);
             
-            // Standard UPI URL that works with most UPI apps except WhatsApp
+            // Standard UPI URL that works with all UPI apps except WhatsApp Pay
             const upiUrl = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${amount}&cu=INR&tn=${note}`;
 
             // Show confirmation
@@ -335,7 +335,7 @@
                              `Organization: ${orgName}\n` +
                              `Amount: ₹${amount}\n` +
                              `UPI ID: ${upiId}\n\n` +
-                             `You will be redirected to your UPI app (excludes WhatsApp Pay).`;
+                             `You will be redirected to your UPI app.\nSupported: PhonePe, Google Pay, Paytm, BHIM, Amazon Pay & others (except WhatsApp Pay).`;
 
             if (confirm(confirmMsg)) {
                 // Try to open UPI app
@@ -428,5 +428,5 @@
             }, 100);
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9784189ad55097f6',t:'MTc1NjcyMjY2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97841f62842e91ac',t:'MTc1NjcyMjk0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
