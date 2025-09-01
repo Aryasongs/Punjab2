@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punjab Flood Rescue - Dozera Foundation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hero-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+        .rescue-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .rescue-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .donation-option {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .donation-option:hover {
+            transform: scale(1.02);
+        }
+        .donation-option.selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .amount-btn {
+            transition: all 0.2s ease;
+        }
+        .amount-btn:hover {
+            transform: scale(1.05);
+        }
+        .amount-btn.selected {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-6">
+                    <!-- Punjab Logo -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl mb-1">
+                            ਪੰ
+                        </div>
+                        <div class="text-sm font-bold text-gray-800">PUNJAB</div>
+                        <div class="text-xs text-blue-600 font-semibold">Dozera Foundation</div>
+                    </div>
+                    <div class="border-l border-gray-300 h-16"></div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-blue-600">Flood Relief Mission</h1>
+                        <p class="text-sm text-gray-600">Joint Government Operation</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                    <a href="#rescue" class="text-gray-700 hover:text-blue-600 font-medium">Rescue</a>
+                    <a href="#donation" class="text-gray-700 hover:text-blue-600 font-medium">Donate</a>
+                    <a href="#transparency" class="text-gray-700 hover:text-blue-600 font-medium">Transparency</a>
+                    <a href="#policies" class="text-gray-700 hover:text-blue-600 font-medium">Policies</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-6">Punjab Flood Rescue Mission</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Joint operation between Dozera Foundation and Government for flood relief and rescue operations</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#donation" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition duration-300">Donate Now</a>
+                <a href="#rescue" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition duration-300">View Rescue</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rescue Operations -->
+    <section id="rescue" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Our Rescue Operations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="rescue-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://community.oriontec.xyz/IMG_0579.jpeg" alt="Rescue Operation 1" class="w-full h-64 object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Emergency Rescue</h3>
+                        <p class="text-gray-600">Evacuating people from flood-affected areas to safe locations</p>
+                    </div>
+                </div>
+                <div class="rescue-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://community.oriontec.xyz/IMG_0578.jpeg" alt="Rescue Operation 2" class="w-full h-64 object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Medical Aid</h3>
+                        <p class="text-gray-600">Providing medical assistance and emergency treatment</p>
+                    </div>
+                </div>
+                <div class="rescue-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://community.oriontec.xyz/IMG_0577.jpeg" alt="Rescue Operation 3" class="w-full h-64 object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Food Distribution</h3>
+                        <p class="text-gray-600">Distribution of food and essential supplies</p>
+                    </div>
+                </div>
+                <div class="rescue-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://community.oriontec.xyz/IMG_0575.jpeg" alt="Rescue Operation 4" class="w-full h-64 object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Shelter Support</h3>
+                        <p class="text-gray-600">Temporary shelter and safe accommodation</p>
+                    </div>
+                </div>
+                <div class="rescue-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://community.oriontec.xyz/IMG_0576.jpeg" alt="Rescue Operation 5" class="w-full h-64 object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Water Rescue</h3>
+                        <p class="text-gray-600">Immediate assistance for people trapped in water</p>
+                    </div>
+                </div>
+                <div class="rescue-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://community.oriontec.xyz/IMG_0572.jpeg" alt="Rescue Operation 6" class="w-full h-64 object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Community Support</h3>
+                        <p class="text-gray-600">Community assistance and rehabilitation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Donors Section -->
+    <section class="py-12 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Recent Donors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">R</div>
+                    <h4 class="font-semibold">Rajesh Kumar</h4>
+                    <p class="text-green-600 font-bold">₹2,500</p>
+                    <p class="text-xs text-gray-500">2 hours ago</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">P</div>
+                    <h4 class="font-semibold">Priya Sharma</h4>
+                    <p class="text-green-600 font-bold">₹1,000</p>
+                    <p class="text-xs text-gray-500">3 hours ago</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">A</div>
+                    <h4 class="font-semibold">Amit Singh</h4>
+                    <p class="text-green-600 font-bold">₹5,000</p>
+                    <p class="text-xs text-gray-500">5 hours ago</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">S</div>
+                    <h4 class="font-semibold">Sunita Patel</h4>
+                    <p class="text-green-600 font-bold">₹1,500</p>
+                    <p class="text-xs text-gray-500">6 hours ago</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">V</div>
+                    <h4 class="font-semibold">Vikram Gupta</h4>
+                    <p class="text-green-600 font-bold">₹3,000</p>
+                    <p class="text-xs text-gray-500">8 hours ago</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">M</div>
+                    <h4 class="font-semibold">Meera Joshi</h4>
+                    <p class="text-green-600 font-bold">₹2,000</p>
+                    <p class="text-xs text-gray-500">10 hours ago</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">K</div>
+                    <h4 class="font-semibold">Karan Malhotra</h4>
+                    <p class="text-green-600 font-bold">₹4,500</p>
+                    <p class="text-xs text-gray-500">12 hours ago</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">N</div>
+                    <h4 class="font-semibold">Neha Agarwal</h4>
+                    <p class="text-green-600 font-bold">₹1,200</p>
+                    <p class="text-xs text-gray-500">14 hours ago</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">D</div>
+                    <h4 class="font-semibold">Deepak Verma</h4>
+                    <p class="text-green-600 font-bold">₹3,500</p>
+                    <p class="text-xs text-gray-500">16 hours ago</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow text-center">
+                    <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-2">R</div>
+                    <h4 class="font-semibold">Ritu Kapoor</h4>
+                    <p class="text-green-600 font-bold">₹2,800</p>
+                    <p class="text-xs text-gray-500">18 hours ago</p>
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <p class="text-gray-600">Total raised so far: <span class="font-bold text-green-600 text-xl">₹27,00,000</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donation" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Help Punjab Flood Victims</h2>
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8">
+                <!-- Donor Information -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Your Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Your Name *</label>
+                            <input type="text" id="donorName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter your name" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Mobile Number *</label>
+                            <input type="tel" id="donorPhone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Mobile number" required>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-gray-700 font-medium mb-2">Message (Optional)</label>
+                        <textarea id="donorMessage" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" rows="3" placeholder="Any message or wishes"></textarea>
+                    </div>
+                </div>
+
+                <!-- Donation Options -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Who would you like to donate to?</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="donation-option border-2 border-gray-200 rounded-lg p-6 text-center" onclick="selectDonationOption('govt')">
+                            <div class="text-4xl mb-3">🏛️</div>
+                            <h4 class="text-xl font-semibold mb-2">Government</h4>
+                            <p class="text-gray-600 text-sm">Through PM National Relief Fund</p>
+                            <p class="text-blue-600 font-medium mt-2">pmnrf@centralbank</p>
+                        </div>
+                        <div class="donation-option border-2 border-gray-200 rounded-lg p-6 text-center" onclick="selectDonationOption('dozera')">
+                            <div class="text-4xl mb-3">🤝</div>
+                            <h4 class="text-xl font-semibold mb-2">Dozera Foundation</h4>
+                            <p class="text-gray-600 text-sm">Direct donation to foundation</p>
+                            <p class="text-blue-600 font-medium mt-2">dozerafoundation@axl</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amount Selection -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Choose Donation Amount</h3>
+                    <div class="grid grid-cols-3 md:grid-cols-5 gap-3 mb-4">
+                        <button class="amount-btn bg-gray-100 hover:bg-blue-500 hover:text-white px-4 py-3 rounded-lg font-semibold" onclick="selectAmount(100)">₹100</button>
+                        <button class="amount-btn bg-gray-100 hover:bg-blue-500 hover:text-white px-4 py-3 rounded-lg font-semibold" onclick="selectAmount(500)">₹500</button>
+                        <button class="amount-btn bg-gray-100 hover:bg-blue-500 hover:text-white px-4 py-3 rounded-lg font-semibold" onclick="selectAmount(1000)">₹1000</button>
+                        <button class="amount-btn bg-gray-100 hover:bg-blue-500 hover:text-white px-4 py-3 rounded-lg font-semibold" onclick="selectAmount(2000)">₹2000</button>
+                        <button class="amount-btn bg-gray-100 hover:bg-blue-500 hover:text-white px-4 py-3 rounded-lg font-semibold" onclick="selectAmount(5000)">₹5000</button>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Or enter your amount (₹1 - ₹5000)</label>
+                        <input type="number" id="customAmount" min="1" max="5000" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter amount">
+                    </div>
+                </div>
+
+                <!-- Pay Button -->
+                <button id="payButton" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 px-6 rounded-lg font-bold text-xl transition duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed" onclick="processDonation()" disabled>
+                    Pay & Donate
+                </button>
+
+                <p class="text-center text-gray-600 text-sm mt-4">
+                    * You will be redirected to your UPI app for secure payment
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparency Section -->
+    <section id="transparency" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">How Your Donations Are Used</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🚁</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Emergency Rescue</h3>
+                    <div class="text-2xl font-bold text-blue-600 mb-2">40%</div>
+                    <p class="text-gray-600">Helicopter operations, boats, rescue equipment</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🏥</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Medical Aid</h3>
+                    <div class="text-2xl font-bold text-green-600 mb-2">25%</div>
+                    <p class="text-gray-600">Medical supplies, doctors, ambulances</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🍽️</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Food & Water</h3>
+                    <div class="text-2xl font-bold text-orange-600 mb-2">20%</div>
+                    <p class="text-gray-600">Food packets, clean water, essential supplies</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🏠</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Shelter & Rehab</h3>
+                    <div class="text-2xl font-bold text-purple-600 mb-2">15%</div>
+                    <p class="text-gray-600">Temporary shelters, rehabilitation programs</p>
+                </div>
+            </div>
+            <div class="mt-12 bg-gray-50 p-8 rounded-lg">
+                <h3 class="text-2xl font-bold mb-6 text-center">Financial Transparency</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600">₹27,00,000</div>
+                        <p class="text-gray-600">Total Raised</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600">₹24,30,000</div>
+                        <p class="text-gray-600">Funds Utilized</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-orange-600">₹2,70,000</div>
+                        <p class="text-gray-600">Available for Use</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policies Section -->
+    <section id="policies" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Policies & Legal Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Privacy Policy -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-blue-600">Privacy Policy</h3>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p><strong>Data Collection:</strong> We collect name, phone, and donation amount for processing.</p>
+                        <p><strong>Data Usage:</strong> Information used only for donation processing and receipts.</p>
+                        <p><strong>Data Security:</strong> All data encrypted and stored securely.</p>
+                        <p><strong>Third Parties:</strong> Data not shared except with payment processors.</p>
+                        <p><strong>Contact:</strong> privacy@dozerafoundation.org</p>
+                    </div>
+                </div>
+
+                <!-- Refund Policy -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-green-600">Refund Policy</h3>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p><strong>Refund Window:</strong> 24 hours from donation time.</p>
+                        <p><strong>Valid Reasons:</strong> Technical errors, duplicate payments, unauthorized transactions.</p>
+                        <p><strong>Process:</strong> Email refund@dozerafoundation.org with transaction details.</p>
+                        <p><strong>Timeline:</strong> Refunds processed within 5-7 business days.</p>
+                        <p><strong>Note:</strong> Refunds may affect tax deduction certificates.</p>
+                    </div>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-purple-600">Terms & Conditions</h3>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p><strong>Donation Usage:</strong> Funds used exclusively for Punjab flood relief.</p>
+                        <p><strong>Tax Benefits:</strong> 80G certificate provided for eligible donations.</p>
+                        <p><strong>Minimum Amount:</strong> ₹1 minimum, ₹5000 maximum per transaction.</p>
+                        <p><strong>Liability:</strong> Foundation not liable for payment gateway issues.</p>
+                        <p><strong>Disputes:</strong> Subject to Indian jurisdiction.</p>
+                    </div>
+                </div>
+
+                <!-- Compliance -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-red-600">Legal Compliance</h3>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p><strong>Registration:</strong> Registered under Section 8 of Companies Act 2013.</p>
+                        <p><strong>FCRA:</strong> FCRA registered for foreign contributions.</p>
+                        <p><strong>80G Certificate:</strong> Valid 80G registration for tax exemption.</p>
+                        <p><strong>Audit:</strong> Annual audited reports published on website.</p>
+                        <p><strong>Transparency:</strong> RTI compliant organization.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Policies -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Cookie Policy -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-indigo-600">Cookie Policy</h3>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p><strong>Essential Cookies:</strong> Required for website functionality and donation processing.</p>
+                        <p><strong>Analytics:</strong> We use cookies to understand user behavior and improve experience.</p>
+                        <p><strong>Third-party:</strong> Payment gateways may set their own cookies.</p>
+                        <p><strong>Control:</strong> You can disable cookies in browser settings.</p>
+                        <p><strong>Impact:</strong> Disabling may affect donation functionality.</p>
+                    </div>
+                </div>
+
+                <!-- Grievance Policy -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-teal-600">Grievance Redressal</h3>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p><strong>Contact:</strong> grievance@dozerafoundation.org</p>
+                        <p><strong>Response Time:</strong> 48 hours acknowledgment, 7 days resolution.</p>
+                        <p><strong>Escalation:</strong> Unresolved issues escalated to board members.</p>
+                        <p><strong>Documentation:</strong> All complaints documented and tracked.</p>
+                        <p><strong>Appeal:</strong> Right to appeal decisions within 30 days.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <p class="text-gray-600">Last updated: December 2024 | For detailed policies, contact: legal@dozerafoundation.org</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Dozera Foundation</h3>
+                    <p class="text-gray-300">Working together with government for Punjab flood relief operations</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <p class="text-gray-300">Email: info@dozerafoundation.org</p>
+                    <p class="text-gray-300">Phone: +91-XXXX-XXXXXX</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-bold mb-4">Government Partner</h3>
+                    <img src="https://community.oriontec.xyz/IMG_0574.png" alt="Government Logo" class="mx-auto h-16 w-auto" onerror="this.src=''; this.alt='Government Logo'; this.style.display='none';">
+                    <p class="text-gray-300 mt-2">Government of India</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 Dozera Foundation x Government. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let selectedDonationType = '';
+        let selectedAmount = 0;
+
+        function selectDonationOption(type) {
+            // Remove previous selection
+            document.querySelectorAll('.donation-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            event.target.closest('.donation-option').classList.add('selected');
+            selectedDonationType = type;
+            
+            updatePayButton();
+        }
+
+        function selectAmount(amount) {
+            // Remove previous selection
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selection to clicked button
+            event.target.classList.add('selected');
+            selectedAmount = amount;
+            
+            // Clear custom amount
+            document.getElementById('customAmount').value = '';
+            
+            updatePayButton();
+        }
+
+        // Handle custom amount input
+        document.getElementById('customAmount').addEventListener('input', function() {
+            const customAmount = parseInt(this.value) || 0;
+            if (customAmount >= 1 && customAmount <= 5000) {
+                selectedAmount = customAmount;
+                
+                // Remove selection from preset buttons
+                document.querySelectorAll('.amount-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+            } else {
+                selectedAmount = 0;
+            }
+            updatePayButton();
+        });
+
+        function updatePayButton() {
+            const payButton = document.getElementById('payButton');
+            const donorName = document.getElementById('donorName').value.trim();
+            const donorPhone = document.getElementById('donorPhone').value.trim();
+            
+            if (selectedDonationType && selectedAmount > 0 && donorName && donorPhone) {
+                payButton.disabled = false;
+                payButton.textContent = `₹${selectedAmount} Pay & Donate करें`;
+            } else {
+                payButton.disabled = true;
+                payButton.textContent = 'Pay & Donate करें';
+            }
+        }
+
+        // Update button when name or phone changes
+        document.getElementById('donorName').addEventListener('input', updatePayButton);
+        document.getElementById('donorPhone').addEventListener('input', updatePayButton);
+
+        function processDonation() {
+            const donorName = document.getElementById('donorName').value.trim();
+            const donorPhone = document.getElementById('donorPhone').value.trim();
+            const donorMessage = document.getElementById('donorMessage').value.trim();
+            
+            if (!selectedDonationType || !selectedAmount || !donorName || !donorPhone) {
+                alert('Please fill in all required information');
+                return;
+            }
+
+            // Get UPI ID based on selection
+            const upiId = selectedDonationType === 'govt' ? 'pmnrf@centralbank' : 'dozerafoundation@axl';
+            const recipientName = selectedDonationType === 'govt' ? 'PM National Relief Fund' : 'Dozera Foundation';
+            
+            // Create UPI payment URL
+            const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(recipientName)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(`Punjab Flood Relief - ${donorName}${donorMessage ? ' - ' + donorMessage : ''}`)}`;
+            
+            // Show confirmation
+            const confirmMessage = `
+                Confirm your donation:
+                
+                Donor: ${donorName}
+                Amount: ₹${selectedAmount}
+                Recipient: ${recipientName}
+                ${donorMessage ? `Message: ${donorMessage}` : ''}
+                
+                Do you want to proceed to UPI app?
+            `;
+            
+            if (confirm(confirmMessage)) {
+                // Try to open UPI app
+                window.location.href = upiUrl;
+                
+                // Show success message
+                setTimeout(() => {
+                    alert('Thank you! Your donation will help Punjab flood victims. 🙏');
+                }, 1000);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9783ee2d860a3b2e',t:'MTc1NjcyMDkyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
