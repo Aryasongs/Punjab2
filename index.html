@@ -15,6 +15,31 @@
     <meta name="twitter:title" content="Punjab Flood Relief - Dozera Foundation">
     <meta name="twitter:description" content="Support Punjab flood victims through emergency rescue operations.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, push, onValue, set } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyC30TcmMVhP_8HdFYS1WufRiZwSDYNMTF0",
+            authDomain: "pulse2-92372.firebaseapp.com",
+            databaseURL: "https://pulse2-92372-default-rtdb.firebaseio.com",
+            projectId: "pulse2-92372",
+            storageBucket: "pulse2-92372.firebasestorage.app",
+            messagingSenderId: "276235725177",
+            appId: "1:276235725177:web:0f4e0789fae80a435927a8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        
+        // Make Firebase functions globally available
+        window.firebaseDB = database;
+        window.firebaseRef = ref;
+        window.firebasePush = push;
+        window.firebaseOnValue = onValue;
+        window.firebaseSet = set;
+    </script>
     <style>
         .hero-bg {
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
@@ -92,6 +117,49 @@
                         <li>• Political activities</li>
                         <li>• Non-emergency purposes</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fundraising Progress -->
+    <section class="py-8 bg-gradient-to-r from-green-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-center mb-6 text-gray-800">💰 Punjab Flood Relief Fund</h3>
+                
+                <div class="text-center mb-6">
+                    <div class="text-3xl font-bold text-green-600 mb-2" id="totalRaised">₹29,00,000</div>
+                    <div class="text-sm text-gray-600">Total Raised</div>
+                    <div class="text-xs text-blue-600 mt-1">Target: ₹50,00,000</div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="mb-6">
+                    <div class="bg-gray-200 rounded-full h-4 mb-2">
+                        <div id="progressBar" class="bg-gradient-to-r from-green-500 to-blue-500 h-4 rounded-full transition-all duration-1000" style="width: 58%"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>₹0</span>
+                        <span id="progressPercent">58% Complete</span>
+                        <span>₹50L</span>
+                    </div>
+                </div>
+                
+                <!-- Live Stats -->
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div class="bg-green-50 rounded-lg p-3">
+                        <div class="text-lg font-bold text-green-600" id="totalDonors">1,247</div>
+                        <div class="text-xs text-green-500">Donors</div>
+                    </div>
+                    <div class="bg-blue-50 rounded-lg p-3">
+                        <div class="text-lg font-bold text-blue-600" id="familiesHelped">890</div>
+                        <div class="text-xs text-blue-500">Families Helped</div>
+                    </div>
+                    <div class="bg-orange-50 rounded-lg p-3">
+                        <div class="text-lg font-bold text-orange-600" id="avgDonation">₹2,327</div>
+                        <div class="text-xs text-orange-500">Avg Donation</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -190,7 +258,7 @@
                         <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-blue-50 transition-colors">
                             <input type="radio" name="organization" value="govt" class="mr-3 text-blue-600">
                             <div>
-                                <div class="font-medium text-gray-800">🏛️ Government of India</div>
+                                <div class="font-medium text-gray-800">🏛️ Government of Punjab</div>
                                 <div class="text-sm text-gray-600">pmnrf@centralbank</div>
                             </div>
                         </label>
@@ -402,11 +470,11 @@
 
         // Donor names pool for random generation
         const donorNames = [
-            ' Rajesh Mlh', 'Priya Singh', 'Amit Sharma', 'Sunita Patel', 'Vikram Joshi',
+            'Rajesh Kumar', 'Priya Singh', 'Amit Sharma', 'Sunita Patel', 'Vikram Joshi',
             'Neha Gupta', 'Rohit Verma', 'Kavita Rao', 'Arjun Mehta', 'Deepika Shah',
             'Sanjay Agarwal', 'Pooja Malhotra', 'Ravi Chopra', 'Meera Bansal', 'Karan Sethi',
             'Anjali Kapoor', 'Suresh Jindal', 'Nisha Goel', 'Manish Tiwari', 'Rekha Saxena',
-            'Ashok Mittal', 'Shweta Jain', ' Jassveer Singh ', 'Preeti Arora', 'Gaurav Singhal',
+            'Ashok Mittal', 'Shweta Jain', 'Dinesh Khanna', 'Preeti Arora', 'Gaurav Singhal',
             'Ritu Bhardwaj', 'Naveen Ahluwalia', 'Simran Kaur', 'Harish Bhatia', 'Seema Dua',
             'Ajay Tandon', 'Vandana Sood', 'Pankaj Goyal', 'Rashmi Kohli', 'Sachin Oberoi',
             'Divya Nair', 'Manoj Aggarwal', 'Swati Pandey', 'Nitin Bajaj', 'Geeta Sharma',
@@ -458,13 +526,84 @@
             });
         }
 
-        // Initialize donors on page load
+        // Firebase donation tracking
+        let currentFundTotal = 2900000; // Starting amount: ₹29,00,000
+        let totalDonors = 1247;
+        let familiesHelped = 890;
+
+        // Initialize Firebase listeners and donors on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateDonorDisplay();
+            initializeFirebase();
             
             // Update donors every 30 minutes (1800000 milliseconds)
             setInterval(updateDonorDisplay, 1800000);
         });
+
+        function initializeFirebase() {
+            // Listen for fund total changes
+            const fundRef = window.firebaseRef(window.firebaseDB, 'punjabFloodRelief/totalFund');
+            window.firebaseOnValue(fundRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    currentFundTotal = data;
+                    updateFundDisplay();
+                }
+            });
+
+            // Listen for donor count changes
+            const donorCountRef = window.firebaseRef(window.firebaseDB, 'punjabFloodRelief/donorCount');
+            window.firebaseOnValue(donorCountRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    totalDonors = data;
+                    updateStatsDisplay();
+                }
+            });
+
+            // Initialize fund total if not exists
+            window.firebaseSet(window.firebaseRef(window.firebaseDB, 'punjabFloodRelief/totalFund'), currentFundTotal);
+            window.firebaseSet(window.firebaseRef(window.firebaseDB, 'punjabFloodRelief/donorCount'), totalDonors);
+        }
+
+        function updateFundDisplay() {
+            const totalRaisedElement = document.getElementById('totalRaised');
+            const progressBar = document.getElementById('progressBar');
+            const progressPercent = document.getElementById('progressPercent');
+            
+            // Format amount in lakhs
+            const amountInLakhs = (currentFundTotal / 100000).toFixed(1);
+            totalRaisedElement.textContent = `₹${amountInLakhs}L`;
+            
+            // Update progress bar (target: ₹50,00,000)
+            const percentage = Math.min((currentFundTotal / 5000000) * 100, 100);
+            progressBar.style.width = percentage + '%';
+            progressPercent.textContent = Math.round(percentage) + '% Complete';
+        }
+
+        function updateStatsDisplay() {
+            document.getElementById('totalDonors').textContent = totalDonors.toLocaleString();
+            document.getElementById('familiesHelped').textContent = Math.floor(totalDonors * 0.71).toLocaleString();
+            document.getElementById('avgDonation').textContent = '₹' + Math.round(currentFundTotal / totalDonors).toLocaleString();
+        }
+
+        function saveDonationToFirebase(donationData) {
+            // Save individual donation
+            const donationsRef = window.firebaseRef(window.firebaseDB, 'punjabFloodRelief/donations');
+            window.firebasePush(donationsRef, {
+                ...donationData,
+                timestamp: Date.now(),
+                date: new Date().toISOString()
+            });
+
+            // Update total fund
+            const newTotal = currentFundTotal + parseInt(donationData.amount);
+            window.firebaseSet(window.firebaseRef(window.firebaseDB, 'punjabFloodRelief/totalFund'), newTotal);
+            
+            // Update donor count
+            const newDonorCount = totalDonors + 1;
+            window.firebaseSet(window.firebaseRef(window.firebaseDB, 'punjabFloodRelief/donorCount'), newDonorCount);
+        }
 
         function processPayment() {
             const donorName = document.getElementById('donorName').value.trim();
@@ -553,6 +692,18 @@
                              `You will be redirected to ${appName}.`;
 
             if (confirm(confirmMsg)) {
+                // Save donation to Firebase
+                const donationData = {
+                    donorName: donorName,
+                    donorMessage: donorMessage,
+                    amount: parseInt(amount),
+                    organization: orgName,
+                    upiId: upiId,
+                    paymentApp: appName
+                };
+                
+                saveDonationToFirebase(donationData);
+                
                 // Try to open specific UPI app
                 window.location.href = appUrl;
                 
@@ -724,5 +875,5 @@
             }, 100);
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97844f59735b47cd',t:'MTc1NjcyNDkwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97931718765349a6',t:'MTc1Njg3OTg5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
